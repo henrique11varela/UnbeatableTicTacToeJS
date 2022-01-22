@@ -1,0 +1,105 @@
+:root {
+    --squareSize: 15vh;
+    --borderSize: 2px;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    margin: 10vh auto 10vh auto;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: min-content;
+}
+
+.spaces {
+    background-color: white;
+    height: var(--squareSize);
+    width: var(--squareSize);
+    display: grid;
+    place-content: center;
+}
+
+.spaces:nth-child(1), 
+.spaces:nth-child(2),
+.spaces:nth-child(3),
+.spaces:nth-child(4),
+.spaces:nth-child(5),
+.spaces:nth-child(6) {
+    border-bottom: var(--borderSize) black solid;
+}
+
+.spaces:nth-child(1),
+.spaces:nth-child(2),
+.spaces:nth-child(4),
+.spaces:nth-child(5),
+.spaces:nth-child(7),
+.spaces:nth-child(8) {
+    border-right: var(--borderSize) black solid;
+}
+
+.spaces:nth-child(2),
+.spaces:nth-child(3),
+.spaces:nth-child(5),
+.spaces:nth-child(6),
+.spaces:nth-child(8),
+.spaces:nth-child(9) {
+    border-left: var(--borderSize) black solid;
+}
+
+.spaces:nth-child(4),
+.spaces:nth-child(5),
+.spaces:nth-child(6),
+.spaces:nth-child(7),
+.spaces:nth-child(8),
+.spaces:nth-child(9) {
+    border-top: var(--borderSize) black solid;
+}
+
+.circle {
+    border-radius: 50%;
+    background-color: blue;
+    height: calc(var(--squareSize) - 4vh);
+    width: calc(var(--squareSize) - 4vh);
+    display: grid;
+    place-content: center;
+}
+
+.circle div {
+    border-radius: inherit;
+    background-color: #fff;
+    height: calc(var(--squareSize) - 6vh);
+    width: calc(var(--squareSize) - 6vh);
+}
+
+.cross {
+    height: calc(var(--squareSize) - 2vh);
+    width: calc(var(--squareSize) - 2vh);
+    display: grid;
+    place-content: center;
+    position: relative;
+}
+
+.cross div {
+    height: 1vh;
+    width: calc(var(--squareSize) - 2vh);
+    background-color: red;
+    position: absolute;
+    top: calc(50% - 0.5vh);
+}
+
+.cross div:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+.cross div:nth-child(2) {
+    transform: rotate(-45deg);
+    
+}
