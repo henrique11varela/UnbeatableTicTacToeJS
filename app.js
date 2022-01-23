@@ -50,6 +50,7 @@ let botPlay = function() {
         updateState(4);
     }
     //if center taken and corners are free, take a corner
+    /*
     else if (state[4] == "O" && (state[0] == "e" || state[2] == "e" || state[6] == "e" || state[8] == "e")) {
         let corners = [0, 2, 6, 8];
         let freeCorners = [];
@@ -60,25 +61,40 @@ let botPlay = function() {
         }
         updateState(freeCorners[Math.floor(Math.random() * freeCorners.length)]);
     }
-    //if center is bot then take edges
-    else if (state[4] == "X" && (state[1] == "e" || state[3] == "e" || state[5] == "e" || state[7] == "e")) {
-        let corners = [1, 3, 5, 7];
-        let freeCorners = [];
-        for (let i = 0; i < corners.length; i++) {
-            if (state[corners[i]] == "e") {
-                freeCorners.push(corners[i]);
-            }
+    */
+    //if center is bot and 2 edges are taken then take adjacent corner
+    else { 
+        if (state[0] == "e" && state[1] == "O" && state[3] == "O") {
+            updateState(0);
         }
-        updateState(freeCorners[Math.floor(Math.random() * freeCorners.length)]);
-    }
-    else { //play random
-        let emptySpaces = [];
-        for (let i = 0; i < state.length; i++) {
-            if (state[i] == "e") {
-                emptySpaces.push(i);
-            }
+        else if (state[2] == "e" && state[1] == "O" && state[5] == "O") {
+            updateState(2);
         }
-        updateState(emptySpaces[Math.floor(Math.random() * emptySpaces.length)]);
+        else if (state[6] == "e" && state[3] == "O" && state[7] == "O") {
+            updateState(6);
+        }
+        else if (state[8] == "e" && state[5] == "O" && state[7] == "O") {
+            updateState(8);
+        }
+        else if ((state[4] == "X" && state[0] == "O" && state[8] == "O") || (state[4] == "X" && state[2] == "O" && state[6] == "O")) {
+            let edges = [1, 3, 5, 7];
+            let freeEdges = [];
+            for (let i = 0; i < edges.length; i++) {
+                if (state[edges[i]] == "e") {
+                    freeEdges.push(edges[i]);
+                }
+            }
+            updateState(freeEdges[Math.floor(Math.random() * freeEdges.length)]);
+        }
+        else {//play random
+            let emptySpaces = [];
+            for (let i = 0; i < state.length; i++) {
+                if (state[i] == "e") {
+                    emptySpaces.push(i);
+                }
+            }
+            updateState(emptySpaces[Math.floor(Math.random() * emptySpaces.length)]);
+        }
     }
     checkGameState();
 }
