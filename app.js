@@ -2,6 +2,11 @@ let turn = "O";
 let state = ["e", "e", "e", "e", "e", "e", "e", "e", "e"];
 const spaces = document.getElementsByClassName("spaces");
 
+//endscreen add
+let endScreen = function(msg) {
+    document.getElementById("board").innerHTML += '<div id="screen">' + msg + '</div>';
+}
+
 //update state, draw and change turn
 let updateState = function(id) {
     state[id] = turn;
@@ -30,20 +35,16 @@ let botPlay = function() {
         }
     }
 
-    console.log("win: " + win);
-    console.log("check: " + check);
-    console.log(state);
+    for (let i = 0; i < check.length; i++) {
+        win.push(check[i]);
+    }
 
     if (win.length > 0) {
-        //play
-        //let line = [];
-        //for (let i = 0; i < win[0].length; i++) {
-        //    line.push(state[win[0][i]]);
-        //}
-        //updateState(win[line.indexOf("e")]);
-        //console.log(win);
-        //console.log(line);
-        //console.log(line.indexOf("e"));
+        let line = [];
+        for (let i = 0; i < win[0].length; i++) {
+            line.push(state[win[0][i]]);
+        }
+        updateState(win[0][line.indexOf("e")]);
     } 
     //play on the edges if theres pieces in the corners and center is empty
     else if ((state[0] == "O" || state[2] == "O" || state[6] == "O" || state[8] == "O") && state[4] == "e") {
@@ -61,6 +62,7 @@ let botPlay = function() {
         }
         updateState(emptySpaces[Math.floor(Math.random() * emptySpaces.length)]);
     }
+    checkGameState();
 }
 
 let checkGameState = function() {
@@ -72,12 +74,12 @@ let checkGameState = function() {
         }
         let noEs = line.filter((a) => {return a != "e"});
         if (noEs.length == 3 && noEs[0] == noEs[1] && noEs[1] == noEs[2]) {
-                console.log(noEs[0] + "'s wins")
+                endScreen("X's wins");
                 return false;
         }    
     }
     if (state.filter((a) => {return a == "e"}).length == 0) {
-        console.log("draw");
+        endScreen("Draw");
         return false;
     }
     return true;
@@ -96,9 +98,8 @@ let draw = function(id) {
 //main function
 let play = function() {
     if (state[parseInt(this.id)] == "e") {
-        updateState(parseInt(this.id));
-        
         if (checkGameState()) {
+            updateState(parseInt(this.id));
             botPlay();
         }
     }

@@ -17,6 +17,7 @@ h1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: min-content;
+    position: relative;
 }
 
 .spaces {
@@ -102,4 +103,18 @@ h1 {
 .cross div:nth-child(2) {
     transform: rotate(-45deg);
     
+}
+
+#screen {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.50);
+    color: white;
+    display: grid;
+    place-content: center;
+    font-size: calc(var(--squareSize) - 4vh);
+    border-radius: calc(var(--squareSize) / 2);
 }
