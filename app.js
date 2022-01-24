@@ -28,7 +28,6 @@ let checkFreeSpace = function(Arr) {
             tempArr.push(Arr[i]);
         }
     }
-    console.log(tempArr);
     return tempArr;
 }
 
@@ -77,6 +76,11 @@ let botPlay = function () {
     else if (state[4] == "e") {
         console.log("center");
         updateState(4);
+    }
+    //if center is O, take corners
+    else if (state[4] == "O" && hasFreeSpace([0, 2, 6, 8])) {
+        console.log("corner");
+        updateState(selectRandom(checkFreeSpace([0, 2, 6, 8])));
     }
     //defend agains 2 edges strat 
     else if (state[0] == "e" && state[1] == "O" && state[3] == "O") {
@@ -133,7 +137,7 @@ let checkGameState = function () {
         }
         let noEs = line.filter((a) => { return a != "e" });
         if (noEs.length == 3 && noEs[0] == noEs[1] && noEs[1] == noEs[2]) {
-            endScreen("X's wins");
+            endScreen(noEs[0] + "'s wins");
             return false;
         }
     }
