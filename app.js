@@ -20,11 +20,33 @@ let updateState = function (id) {
     turn = turn == "O" ? "X" : "O";
 }
 
+//returns free space index
+let checkFreeSpace = function(Arr) {
+    let tempArr = [];
+    for (let i = 0; i < Arr.length; i++) {
+        if (state[Arr[i]] == "e") {
+            tempArr.push(Arr[i]);
+        }
+    }
+    console.log(tempArr);
+    return tempArr;
+}
+
+//returns true if has free space
+let hasFreeSpace = function(Arr) {
+    return checkFreeSpace(Arr).length > 0;
+}
+
+//returns a random item from Array
+let selectRandom = function(Arr) {
+    return Arr[Math.floor(Math.random() * Arr.length)];
+}
+
 //check lines, columns and diagonals
 //and bot play
 let botPlay = function () {
+    //attack or defend with attack priority
     let possibilities = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-    //check if going to win or if in check
     let win = [];//to attack
     let check = [];//in check
     for (let i = 0; i < possibilities.length; i++) {//add checks to arrays
@@ -43,73 +65,61 @@ let botPlay = function () {
     for (let i = 0; i < check.length; i++) {//concat win with check
         win.push(check[i]);
     }
-    //attack or defend with attack priority
     if (win.length > 0) {
+        console.log("attack/defend");
         let line = [];
         for (let i = 0; i < win[0].length; i++) {
             line.push(state[win[0][i]]);
         }
-        updateState(win[0][line.indexOf("e")]);
+        updateState(checkFreeSpace(win[0]));
     }
     //if center is free, take center
     else if (state[4] == "e") {
+        console.log("center");
         updateState(4);
     }
     //defend agains 2 edges strat 
     else if (state[0] == "e" && state[1] == "O" && state[3] == "O") {
+        console.log("edges strat");
         updateState(0);
     }
     else if (state[2] == "e" && state[1] == "O" && state[5] == "O") {
+        console.log("edges strat");
         updateState(2);
     }
     else if (state[6] == "e" && state[3] == "O" && state[7] == "O") {
+        console.log("edges strat");
         updateState(6);
     }
     else if (state[8] == "e" && state[5] == "O" && state[7] == "O") {
+        console.log("edges strat");
         updateState(8);
     }
     //defend agains diagonal strat
     else if ((state[4] == "X" && state[0] == "O" && state[8] == "O") || (state[4] == "X" && state[2] == "O" && state[6] == "O")) {
-        let edges = [1, 3, 5, 7];
-        let freeEdges = [];
-        for (let i = 0; i < edges.length; i++) {
-            if (state[edges[i]] == "e") {
-                freeEdges.push(edges[i]);
-            }
-        }
-        updateState(freeEdges[Math.floor(Math.random() * freeEdges.length)]);
+        console.log("diagonal strat");
+        updateState(selectRandom(checkFreeSpace([1, 3, 5, 7])));
     }
     //defend agains horse strat
-    else if (!((state[1] == "O" && state[7]== "O") || (state[3] == "O" && state[5]== "O"))) {
-        let options = [];
-        let freeOptions = [];
-        if ((state[0] == "O" || state[6] == "O") && state[5] == "O") {
-            options = [1, 2, 7, 8];
-        }
-        else if ((state[0] == "O" || state[2] == "O") && state[7] == "O") {
-            options = [3, 5, 6, 8];
-        }
-        else if ((state[2] == "O" || state[8] == "O") && state[3] == "O") {
-            options = [0, 1, 6, 7];
-        }
-        else if ((state[6] == "O" || state[8] == "O") && state[1] == "O") {
-            options = [0, 2, 3, 5];
-        }
-        for (let i = 0; i < options.length; i++) {
-            if (state[options[i]] == "e") {
-                freeOptions.push(options[i]);
-            }
-        }
-        updateState(options[Math.floor(Math.random() * options.length)]);
+    else if (((6 || 8) && 1)&&(checkFreeSpace([0, 2, 3, 5]).length == 4)) {
+        console.log("horse strat");
+        updateState(selectRandom([0, 2, 3, 5]));
+    }
+    else if (((0 || 6) && 5)&&(checkFreeSpace([1, 2, 7, 8]).length == 4)) {
+        console.log("horse strat");
+        updateState(selectRandom([1, 2, 7, 8]));
+    }
+    else if (((0 || 2) && 7)&&(checkFreeSpace([3, 5, 6, 8]).length == 4)) {
+        console.log("horse strat");
+        updateState(selectRandom([3, 5, 6, 8]));
+    }
+    else if (((2 || 8) && 3)&&(checkFreeSpace([0, 1, 6, 7]).length == 4)) {
+        console.log("horse strat");
+        updateState(selectRandom([0, 1, 6, 7]));
     }
     else {//play random
-        let emptySpaces = [];
-        for (let i = 0; i < state.length; i++) {
-            if (state[i] == "e") {
-                emptySpaces.push(i);
-            }
-        }
-        updateState(emptySpaces[Math.floor(Math.random() * emptySpaces.length)]);
+        console.log("random");
+        updateState(selectRandom(checkFreeSpace([0, 1, 2, 3, 4, 5, 6, 7, 8])));
     }
     checkGameState();
 }
