@@ -105,19 +105,19 @@ let botPlay = function () {
         updateState(selectRandom(checkFreeSpace([1, 3, 5, 7])));
     }
     //defend agains horse strat
-    else if (((6 || 8) && 1)&&(checkFreeSpace([0, 2, 3, 5]).length == 4)) {
+    else if (checkFreeSpace([0, 2, 3, 5]).length == 4) {
         console.log("horse strat");
         updateState(selectRandom([0, 2, 3, 5]));
     }
-    else if (((0 || 6) && 5)&&(checkFreeSpace([1, 2, 7, 8]).length == 4)) {
+    else if (checkFreeSpace([1, 2, 7, 8]).length == 4) {
         console.log("horse strat");
         updateState(selectRandom([1, 2, 7, 8]));
     }
-    else if (((0 || 2) && 7)&&(checkFreeSpace([3, 5, 6, 8]).length == 4)) {
+    else if (checkFreeSpace([3, 5, 6, 8]).length == 4) {
         console.log("horse strat");
         updateState(selectRandom([3, 5, 6, 8]));
     }
-    else if (((2 || 8) && 3)&&(checkFreeSpace([0, 1, 6, 7]).length == 4)) {
+    else if (checkFreeSpace([0, 1, 6, 7]).length == 4) {
         console.log("horse strat");
         updateState(selectRandom([0, 1, 6, 7]));
     }
