@@ -82,7 +82,7 @@ let display = function() {
 
 let reset = function () {
     gameState = ["e", "e", "e", "e", "e", "e", "e", "e", "e"];
-    document.getElementById("board").innerHTML = '<button type="button" onclick="choosePlayerPiece(\'O\')"><div class="circle"><div></div></div></button><button type="button" onclick="choosePlayerPiece(\'X\')"><div class="cross"><div></div><div></div></div></button>';
+    document.getElementById("board").innerHTML = '<div id="choosePlayerPiece"><button type="button" onclick="choosePlayerPiece(\'O\')"><div class="circle"><div></div></div></button><button type="button" onclick="choosePlayerPiece(\'X\')"><div class="cross"><div></div><div></div></div></button></div>';
 
 }
 
@@ -122,7 +122,7 @@ let chooseFirstPlayer = function(player) {
 let choosePlayerPiece = function(player) {
     humanPlayer = player;
     botPlayer = humanPlayer == 'X' ? 'O' : 'X';
-    document.getElementById("board").innerHTML = '<button type="button" onclick="chooseFirstPlayer(\'human\')">Player</button><button type="button" onclick="chooseFirstPlayer(\'computer\')">Computer</button>';
+    document.getElementById("board").innerHTML = '<div id="chooseFirstPlayer"><button type="button" onclick="chooseFirstPlayer(\'human\')"><i class="fa-solid fa-person fa-5x"></i></button><button type="button" onclick="chooseFirstPlayer(\'computer\')"><i class="fa-solid fa-robot fa-4x"></i></button></div>';
 }
 
 

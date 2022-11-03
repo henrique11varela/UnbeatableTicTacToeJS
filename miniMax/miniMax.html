@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1a4aca6b7d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style.css">
     <title>Unbeatable Tic-Tac-Toe</title>
 </head>
+
 <body>
-    <h1>Unbeatable Tic-Tac-Toe miniMax Algorithm</h1>
+    <h1>Tic-Tac-Toe using miniMax</h1>
     <div id="board">
-        <button type="button" onclick="choosePlayerPiece('O')">
-            <div class="circle">
-                <div></div>
-            </div>        
-        </button>
-        <button type="button" onclick="choosePlayerPiece('X')">
-            <div class="cross">
-                <div></div>
-                <div></div>
-            </div>
-        </button>
+        <div id="choosePlayerPiece">
+            <button type="button" onclick="choosePlayerPiece('O')">
+                <div class="circle">
+                    <div></div>
+                </div>
+            </button>
+            <button type="button" onclick="choosePlayerPiece('X')">
+                <div class="cross">
+                    <div></div>
+                    <div></div>
+                </div>
+            </button>
+        </div>
     </div>
     <script src="./miniMax.js"></script>
 </body>
+
 </html>
