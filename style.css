@@ -13,6 +13,10 @@ h1 {
     margin: 10vh auto 10vh auto;
 }
 
+a {
+    font-size: 3vh;
+}
+
 #board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
