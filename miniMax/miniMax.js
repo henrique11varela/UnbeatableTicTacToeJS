@@ -41,6 +41,8 @@ let aiPlay = function() {
             {
                 bestScore = curScore;
                 bestMove = i;
+            } else if (curScore == bestScore) {
+                bestMove = (Math.random() < 0.35) ? i : bestMove;
             }
         }
     }
