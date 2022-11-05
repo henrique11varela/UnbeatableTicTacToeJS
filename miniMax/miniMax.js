@@ -28,7 +28,7 @@ let checkGameState = function() {
 
 let aiPlay = function() {
     let bestScore = -1000;
-    let bestMove = 9;
+    let bestMoves = [];
     for (let i = 0; i < 9; i++)
     {
         if (gameState[i] == 'e')
@@ -40,13 +40,17 @@ let aiPlay = function() {
             if (curScore > bestScore)
             {
                 bestScore = curScore;
-                bestMove = i;
+                for (let j = 0; j < bestMoves.length; j++) {
+                    bestMoves.pop();
+                }
+                bestMoves = [i];
             } else if (curScore == bestScore) {
-                bestMove = (Math.random() < 0.35) ? i : bestMove;
+                bestMoves.push(i);
             }
         }
     }
-    gameState[bestMove] = botPlayer;
+    let index = parseInt(Math.random() * 100 % bestMoves.length)
+    gameState[bestMoves[index]] = botPlayer;
 }
 
 let miniMax = function(depth, isMaximizing) {
@@ -127,66 +131,3 @@ let choosePlayerPiece = function(player) {
     document.getElementById("board").innerHTML = '<div id="chooseFirstPlayer"><button type="button" onclick="chooseFirstPlayer(\'human\')"><i class="fa-solid fa-person fa-5x"></i></button><button type="button" onclick="chooseFirstPlayer(\'computer\')"><i class="fa-solid fa-robot fa-4x"></i></button></div>';
 }
 
-
-
-/*
-int main(int argc, char const *argv[])
-{
-    system("cls");
-    // repeat loop
-    bool repeat = true;
-    do
-    {
-        Tictactoe Game;
-        Game.choosePiece();
-        Game.chooseFirstPlayer();
-        // game loop
-        bool gameGoing = true;
-        char state;
-        if (Game.getFirstPlayer() == Game.getBotPlayer())
-        {
-            Game.aiPlay();
-        }
-        do
-        {
-            Game.displayGameState();
-            Game.playInPosition(Game.playerInput(), Game.getHumanPlayer());
-            state = Game.checkGameState();
-            if (state != ' ')
-            {
-                gameGoing = false;
-            }
-            else
-            {
-                Game.aiPlay();
-                state = Game.checkGameState();
-                if (state != ' ')
-                {
-                    gameGoing = false;
-                }
-            }
-        } while (gameGoing);
-        Game.displayGameState();
-        if (state == 'D')
-        {
-            cout << "\nDraw\n" << endl;
-        }
-        else
-        {
-            cout << "\nWinner: " << state << endl << endl;
-        }
-
-        // check if repeat
-        char rep;
-        cout << "Repeat? (Y / N): ";
-        do
-        {
-            cin >> rep;
-        } while (rep != 'y' && rep != 'Y' && rep != 'n' && rep != 'N');
-        repeat = (rep == 'y' || rep == 'Y') ? true : false;
-    } while (repeat);
-
-    return 0;
-}
-*/
-    
