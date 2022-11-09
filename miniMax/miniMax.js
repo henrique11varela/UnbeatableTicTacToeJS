@@ -89,7 +89,7 @@ let display = function() {
 let reset = function () {
     gameState = ["e", "e", "e", "e", "e", "e", "e", "e", "e"];
     document.getElementById("board").innerHTML = '<div id="choosePlayerPiece"><button type="button" onclick="choosePlayerPiece(\'O\')"><div class="circle"><div></div></div></button><button type="button" onclick="choosePlayerPiece(\'X\')"><div class="cross"><div></div><div></div></div></button></div>';
-
+    document.getElementById("info").innerHTML = 'Choose a piece';
 }
 
 let endScreen = function (msg) {
@@ -114,6 +114,7 @@ let play = function() {
 
 let chooseFirstPlayer = function(player) {
     document.getElementById("board").innerHTML = '<div class="spaces" id="0"></div><div class="spaces" id="1"></div><div class="spaces" id="2"></div><div class="spaces" id="3"></div><div class="spaces" id="4"></div><div class="spaces" id="5"></div><div class="spaces" id="6"></div><div class="spaces" id="7"></div><div class="spaces" id="8"></div>';
+    document.getElementById("info").innerHTML = '';
     //make divs clicable
     spaces = document.getElementsByClassName("spaces");
     for (let i = 0; i < spaces.length; i++) {
@@ -129,5 +130,6 @@ let choosePlayerPiece = function(player) {
     humanPlayer = player;
     botPlayer = humanPlayer == 'X' ? 'O' : 'X';
     document.getElementById("board").innerHTML = '<div id="chooseFirstPlayer"><button type="button" onclick="chooseFirstPlayer(\'human\')"><i class="fa-solid fa-person fa-5x"></i></button><button type="button" onclick="chooseFirstPlayer(\'computer\')"><i class="fa-solid fa-robot fa-4x"></i></button></div>';
+    document.getElementById("info").innerHTML = 'Who goes first?';
 }
 
