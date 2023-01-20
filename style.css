@@ -150,4 +150,8 @@ a {
     border: none;
 }
 
+#github {
+    position: fixed;
+    bottom: 1vh;
+}
 
