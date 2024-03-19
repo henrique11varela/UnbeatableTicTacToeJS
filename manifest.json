@@ -1,7 +1,7 @@
 {
     "name": "Unbeatable TicTacToe",
     "short_name": "UTTT",
-    "start_url": "/?home=true",
+    "start_url": "/UnbeatableTicTacToeJS?home=true",
     "icons": [
         {
             "src": "tictactoe.png",
