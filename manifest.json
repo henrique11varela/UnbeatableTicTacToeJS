@@ -1,0 +1,23 @@
+{
+    "name": "Unbeatable TicTacToe",
+    "short_name": "UTTT",
+    "start_url": "/?home=true",
+    "icons": [
+        {
+            "src": "tictactoe.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "tictactoe.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "theme_color": "#000000",
+    "background_color": "#FFFFFF",
+    "display": "fullscreen",
+    "orientation": "portrait"
+}
