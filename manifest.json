@@ -1,23 +1,16 @@
 {
     "name": "Unbeatable TicTacToe",
     "short_name": "UTTT",
-    "start_url": "/UnbeatableTicTacToeJS?home=true",
+    "start_url": "/UnbeatableTicTacToeJS/index.html",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#000000",
+    "orientation": "portrait",
     "icons": [
         {
             "src": "tictactoe.png",
             "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "tictactoe.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable"
+            "type": "image/png"
         }
-    ],
-    "theme_color": "#000000",
-    "background_color": "#FFFFFF",
-    "display": "fullscreen",
-    "orientation": "portrait"
+    ]
 }
